@@ -1,0 +1,28 @@
+table, td {
+   border: 1px solid #333;
+   padding: 0px;
+   background-color:#000;
+   color:#fff;
+   border-spacing: 0px;
+   border-collapse: separate;
+   text-align: center;
+   vertical-align: middle;
+}
+
+td {
+   width: 30px;
+   height: 30px;
+   padding: 2px;
+}
+
+.ship {
+	background-color:#ddd;
+}
+
+.hit {
+	background-color:red !important;
+}
+
+.attempted {
+	background-color:#fff;
+}
