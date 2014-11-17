@@ -26,3 +26,24 @@ td {
 .attempted {
 	background-color:#fff;
 }
+
+.input-tiny {
+	width: 45px;
+}
+
+.margin-top-10 {
+	margin: 10px;
+}
+
+.currentTurn {
+	font-size: 17pt;
+	padding:3px;
+	border: 1px dashed #ccc;
+}
+
+.currentTurn span {
+	background-color:yellow;
+	display:inline-block;
+	padding:4px;
+	font-size:20pt;
+}

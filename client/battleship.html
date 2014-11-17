@@ -1,0 +1,113 @@
+<head>
+	<title>Battleship</title>
+</head>
+
+<body>
+
+ 	{{> bindGame }}
+
+</body>
+
+<template name="bindGame">
+
+	<div class="container">
+		<h1>Welcome to Battleship {{playerName}}!</h1>
+
+	 	{{#if currentPlayer}}
+	 		<div class="currentTurn">Hey <span>{{currentPlayer}}</span>, it's your turn!</div>
+	 	{{/if}}
+
+		{{#if isPlaying}}
+			{{>battleship}}
+		{{else}}
+			{{>gameplay}}
+		{{/if}}
+
+	</div>
+  	
+</template>
+
+<template name="gameplay">
+	
+	{{#if atLeastOneOpenGame}}
+		<p>These games are waiting for you to join...</p>
+
+		{{#each availableGames}}
+			<p><a href="#" class="playGame" data-id="{{_id}}">Start against {{player1}}</a></p>
+		{{/each}}
+	{{else}}
+		<p>Sorry...no games are open...enter your name to start one!</p>
+		<input id="txtPlayer1Name"/>&nbsp;<button id="btnAddPlayer1">Start</button>
+	{{/if}}
+
+</template>
+
+<template name="grid">
+	<div class="row">
+		<div class="col-md-6">
+			<h5>Shots Fired</h5>
+			<table>
+				{{#each tiles}}
+					<tr data-col="{{col}}">
+						<td>{{col}}</td>
+				  		{{#each rows}}
+			  				<td data-col="{{../col}}" data-row="{{number}}" class="{{#if isAttempted}}attempted{{/if}} {{#if isHeader}} {{else}}fireable{{/if}} {{#if isAttemptedAHit}}hit{{/if}}">
+				  				{{#if isHeader}}
+				  					{{number}}
+				  				{{/if}}
+				  			</td>
+				  		{{/each}}
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+		<div class="col-md-6">
+			<h5>Your Ships</h5>
+			<table>
+				{{#each tiles}}
+					<tr data-col="{{col}}">
+						<td>{{col}}</td>
+				  		{{#each rows}}
+				  			<td data-col="{{../col}}" data-row="{{number}}" class="{{#if isHit}}ship{{/if}} {{#if foundHit}}hit{{/if}}">
+								{{#if isHeader}}
+				  					{{number}}
+				  				{{/if}}
+			  				</td>
+				  		{{/each}}
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+	</div>
+</template>
+
+<template name="battleship">
+
+	<div class="container">
+
+		{{#with you}}
+
+			{{> grid}}
+
+			{{#if pendingPlayer}}
+
+				<div class="row">
+					<span class="label label-danger">Hold on!</span> Waiting for another player to join...
+				</div>
+
+			{{else}}
+
+				<div class="row margin-top-10">
+					<div class="well well-sm">
+						<input type="text" id="txtCol" class="input-sm input-tiny" placeholder="a" />&nbsp;<input type="text" id="txtRow" class="input-sm input-tiny" placeholder="1"/>
+						<button class="btn btn-sm btn-danger" id="btnFire">Fire!</button>
+					</div>
+				</div>
+
+			{{/if}}
+
+		{{/with}}
+
+	</div>
+
+</template>
