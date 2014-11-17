@@ -8,40 +8,6 @@
 
 </body>
 
-<template name="bindGame">
-
-	<div class="container">
-		<h1>Welcome to Battleship {{playerName}}!</h1>
-
-	 	{{#if currentPlayer}}
-	 		<div class="currentTurn">Hey <span>{{currentPlayer}}</span>, it's your turn!</div>
-	 	{{/if}}
-
-		{{#if isPlaying}}
-			{{>battleship}}
-		{{else}}
-			{{>gameplay}}
-		{{/if}}
-
-	</div>
-  	
-</template>
-
-<template name="gameplay">
-	
-	{{#if atLeastOneOpenGame}}
-		<p>These games are waiting for you to join...</p>
-
-		{{#each availableGames}}
-			<p><a href="#" class="playGame" data-id="{{_id}}">Start against {{player1}}</a></p>
-		{{/each}}
-	{{else}}
-		<p>Sorry...no games are open...enter your name to start one!</p>
-		<input id="txtPlayer1Name"/>&nbsp;<button id="btnAddPlayer1">Start</button>
-	{{/if}}
-
-</template>
-
 <template name="grid">
 	<div class="row">
 		<div class="col-md-6">
