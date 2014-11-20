@@ -1,16 +1,21 @@
+
 <template name="bindGame">
 
-  	<h1>Welcome to Battleship {{playerName}}!</h1>
+	<div class="container">
+		<h1>Welcome to Battleship {{playerName}}!</h1>
 
- 	{{#if currentPlayer}}
- 		Hey, <b>{{currentPlayer}}</b>, it's your turn!
- 	{{/if}}
+	 	{{#if currentPlayer}}
+	 		<div class="currentTurn">Hey <span>{{currentPlayer}}</span>, it's your turn!</div>
+	 	{{/if}}
 
-	{{#if isPlaying}}
-		{{>battleship}}
-	{{else}}
-		{{>gameplay}}
-	{{/if}}
+		{{#if isPlaying}}
+			{{>battleship}}
+		{{else}}
+			{{>gameplay}}
+		{{/if}}
+
+	</div>
+  	
 </template>
 
 <template name="gameplay">

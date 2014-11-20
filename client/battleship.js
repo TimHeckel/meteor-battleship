@@ -1,4 +1,3 @@
-
 Template.battleship.helpers({
 	you: function() {
 		if (Session.get("gameId")) {
