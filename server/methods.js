@@ -1,14 +1,15 @@
-var _gamesCache = {};
+Meteor.gamesCache = {};
 
 Meteor.methods({
 	invoke: function(opts) {
-		var _game = _.find(_gamesCache, function(g) { return g._id === opts.gameId; });
+		var _game = _.find(Meteor.gamesCache, function(g) { return g._id === opts.gameId; });
 		if (!_game) {
 			_game = new Battleship({gameId: opts.gameId});
-			_gamesCache[opts.gameId] = _game;
+			Meteor.gamesCache[opts.gameId] = _game;
 		}
 		console.log("found game ", _game, opts);
-		return _game[opts.method].apply(_game, opts.args);
+		var _res = _game[opts.method].apply(_game, opts.args);
+		return _res;
 	}
 });
 

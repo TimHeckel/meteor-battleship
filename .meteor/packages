@@ -8,4 +8,5 @@ autopublish
 insecure
 mizzao:bootstrap-3
 mizzao:bootboxjs
+iron:router
 
